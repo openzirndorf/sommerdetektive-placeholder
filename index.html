@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zirndorfer Sommerdetektive – der Fall ist geschlossen</title>
+  <meta name="description" content="Die Zirndorfer Sommerdetektive waren eine Rätsel-Stadtrallye für Groß und Klein in den Sommerferien 2026: 26 Stationen quer durch Zirndorf, Lösungswort, Verlosung im Bräuschank. Die Aktion ist beendet." />
+  <link rel="canonical" href="https://sommerdetektive.openzirndorf.de/" />
+  <link rel="icon" href="https://openzirndorf.de/static/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://openzirndorf.de/static/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--oz-font-body);
+      color: var(--oz-text-primary);
+      background: var(--oz-bg-primary);
+      line-height: var(--oz-line-height-base);
+    }
+    h1, h2 { font-family: var(--oz-font-heading); font-weight: var(--oz-font-weight-bold); line-height: var(--oz-line-height-tight); margin: 0; }
+    a { color: var(--oz-brand-green); }
+    a:hover { color: var(--oz-brand-green-hover); }
+
+    header {
+      border-bottom: 1px solid var(--oz-bg-subtle);
+    }
+    .nav {
+      max-width: var(--oz-max-width);
+      margin: 0 auto;
+      padding: var(--oz-space-4) var(--oz-space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--oz-space-3);
+    }
+    .nav a { text-decoration: none; }
+    .nav .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--oz-space-3);
+      font-family: var(--oz-font-heading);
+      font-weight: var(--oz-font-weight-bold);
+      font-size: var(--oz-font-size-lg);
+      color: var(--oz-text-primary);
+    }
+    .nav .brand-icon { font-size: 1.75rem; }
+    .nav .back {
+      margin-left: auto;
+      font-size: var(--oz-font-size-sm);
+      font-weight: var(--oz-font-weight-medium);
+    }
+
+    main { max-width: var(--oz-max-width-prose); margin: 0 auto; padding: var(--oz-space-10) var(--oz-space-6) var(--oz-space-16); }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--oz-space-2);
+      background: var(--oz-bg-surface);
+      color: var(--oz-text-secondary);
+      border-radius: var(--oz-radius-full);
+      padding: var(--oz-space-2) var(--oz-space-4);
+      font-size: var(--oz-font-size-sm);
+      font-weight: var(--oz-font-weight-medium);
+      margin-bottom: var(--oz-space-4);
+    }
+    .status-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--oz-text-disabled); }
+
+    h1 { font-size: var(--oz-font-size-4xl); margin-bottom: var(--oz-space-4); }
+    .lead { font-size: var(--oz-font-size-lg); color: var(--oz-text-secondary); margin-bottom: var(--oz-space-8); }
+
+    figure { margin: 0 0 var(--oz-space-10); }
+    figure img {
+      width: 100%;
+      border-radius: var(--oz-radius-lg);
+      box-shadow: var(--oz-shadow-lg);
+      border: 1px solid var(--oz-bg-subtle);
+      display: block;
+    }
+    figcaption {
+      font-size: var(--oz-font-size-sm);
+      color: var(--oz-text-secondary);
+      margin-top: var(--oz-space-3);
+      text-align: center;
+    }
+
+    section { margin-bottom: var(--oz-space-10); }
+    section h2 { font-size: var(--oz-font-size-xl); margin-bottom: var(--oz-space-3); }
+    section p { margin: 0 0 var(--oz-space-3); }
+
+    .stats {
+      list-style: none;
+      padding: 0;
+      margin: var(--oz-space-4) 0 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--oz-space-3);
+    }
+    .stats li {
+      background: var(--oz-bg-surface);
+      border-radius: var(--oz-radius);
+      padding: var(--oz-space-4);
+      text-align: center;
+    }
+    .stats strong {
+      display: block;
+      font-family: var(--oz-font-heading);
+      font-size: var(--oz-font-size-2xl);
+      color: var(--oz-brand-green);
+      line-height: var(--oz-line-height-tight);
+    }
+    .stats span {
+      display: block;
+      font-size: var(--oz-font-size-sm);
+      color: var(--oz-text-secondary);
+      margin-top: var(--oz-space-1);
+    }
+
+    .next-card {
+      background: var(--oz-bg-green);
+      /* --oz-bg-green ist ein fester heller Farbton (nicht dark-mode-fähig) —
+         Text hier bewusst nicht über --oz-text-primary, die im Dark Mode auf
+         Beinahe-Weiß umschaltet und sonst auf hellem Grün verschwinden würde. */
+      color: var(--oz-brand-dark);
+      border-radius: var(--oz-radius-lg);
+      padding: var(--oz-space-6);
+      display: flex;
+      align-items: center;
+      gap: var(--oz-space-4);
+      flex-wrap: wrap;
+    }
+    .next-card .emoji { font-size: 2.5rem; }
+    .next-card .btn {
+      display: inline-block;
+      background: var(--oz-brand-green-dark);
+      color: var(--oz-text-inverse);
+      text-decoration: none;
+      font-weight: var(--oz-font-weight-bold);
+      padding: var(--oz-space-3) var(--oz-space-5);
+      border-radius: var(--oz-radius);
+      margin-top: var(--oz-space-2);
+    }
+    .next-card .btn:hover { background: #004d00; color: var(--oz-text-inverse); }
+
+    footer {
+      border-top: 1px solid var(--oz-bg-subtle);
+      padding: var(--oz-space-8) var(--oz-space-6);
+      text-align: center;
+      font-size: var(--oz-font-size-sm);
+      color: var(--oz-text-secondary);
+    }
+    footer a { color: inherit; text-decoration: underline; }
+    footer .links { margin-top: var(--oz-space-2); display: flex; gap: var(--oz-space-4); justify-content: center; flex-wrap: wrap; }
+    .hero { display: flex; align-items: center; gap: var(--oz-space-6); margin-bottom: var(--oz-space-10); flex-wrap: wrap; }
+    .hero img { width: 160px; height: auto; flex-shrink: 0; }
+    .hero .lead { margin: 0; flex: 1 1 260px; }
+
+    .event-card {
+      background: var(--oz-bg-surface);
+      border-radius: var(--oz-radius-lg);
+      padding: var(--oz-space-5) var(--oz-space-6);
+      margin-top: var(--oz-space-4);
+    }
+    .event-card dl { display: grid; grid-template-columns: auto 1fr; gap: var(--oz-space-2) var(--oz-space-4); margin: 0; }
+    .event-card dt { color: var(--oz-text-secondary); font-size: var(--oz-font-size-sm); }
+    .event-card dd { margin: 0; font-weight: var(--oz-font-weight-medium); }
+
+    .sponsor-app { display: flex; align-items: center; gap: var(--oz-space-4); margin-bottom: var(--oz-space-4); }
+    .sponsor-app img { width: 64px; height: 64px; flex-shrink: 0; }
+    .sponsors {
+      list-style: none;
+      padding: 0;
+      margin: var(--oz-space-3) 0 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: var(--oz-space-2);
+    }
+    .sponsors li {
+      background: var(--oz-bg-surface);
+      border-radius: var(--oz-radius);
+      padding: var(--oz-space-3);
+      text-align: center;
+      font-size: var(--oz-font-size-sm);
+      font-weight: var(--oz-font-weight-medium);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a class="brand" href="https://openzirndorf.de/">
+        <span class="brand-icon" aria-hidden="true">🕵️</span>
+        Zirndorfer Sommerdetektive
+      </a>
+      <a class="back" href="https://openzirndorf.de/">← Zurück zu OpenZirndorf</a>
+    </div>
+  </header>
+
+  <main>
+    <span class="status-badge"><span class="dot" aria-hidden="true"></span> Fall geschlossen</span>
+    <h1>Zirndorfer Sommerdetektive</h1>
+    <div class="hero">
+      <img src="detektiv.webp" width="400" height="400" alt="Der Sommerdetektive-Waschbär mit Deerstalker-Mütze, Trenchcoat und Lupe." />
+      <p class="lead">
+        Die Rätsel-Stadtrallye lief in den Sommerferien vom <strong>3. August</strong> bis
+        Mitte <strong>September 2026</strong> – der Fall ist geknackt, neue Rätsel lassen sich
+        nicht mehr lösen. Danke an alle Spürnasen fürs Mitermitteln!
+      </p>
+    </div>
+
+    <section>
+      <h2>Worum ging's?</h2>
+      <p>
+        Ferienspaß für Groß und Klein: Quer durch Zirndorf warteten 26 Stationen, jede mit einem
+        Rätsel, dessen Antwort nur vor Ort zu finden war – eine Jahreszahl am Brunnen, eine
+        Inschrift am Giebel, ein Schild an der Ecke. Wer richtig lag, bekam ein Codewort und
+        die nächste Station wurde frei. Am Ende wartete ein persönliches Lösungswort, eine
+        Detektiv-Urkunde und die Chance auf einen Preis.
+      </p>
+      <p>
+        Ganz ohne Login, ohne E-Mail, ohne Tracking: Der Spielstand lebte nur auf dem eigenen
+        Handy, der Server kannte keine einzige Person.
+      </p>
+    </section>
+
+    <section>
+      <h2>Der Fall in Zahlen</h2>
+      <!-- TODO: XX-Werte durch die Endstände aus der Einsatzzentrale (/#/statistik) ersetzen. -->
+      <ul class="stats">
+        <li><strong>XX</strong><span>Detektiv-Teams</span></li>
+        <li><strong>XX</strong><span>gelöste Rätsel</span></li>
+        <li><strong>XX</strong><span>Lösungswörter – Fall komplett geknackt</span></li>
+        <li><strong>26</strong><span>Stationen</span></li>
+        <li><strong>12</strong><span>Sponsoren</span></li>
+        <li><strong>XX</strong><span>Einsendungen zur Verlosung</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Die Verlosung im Bräuschank</h2>
+      <p>
+        Zum Abschluss haben wir die Preise gemeinsam mit den Spürnasen und ihren Familien
+        <strong>live</strong> verlost – aufgerufen wurde nur der Detektivname, nie eine
+        Mailadresse. Der Zirndorfer Bräuschank hat uns dafür einen Platz zur Verfügung gestellt.
+        Vielen Dank!
+      </p>
+      <div class="event-card">
+        <dl>
+          <dt>Wann</dt><dd>Donnerstag, 24. September 2026, 18 Uhr</dd>
+          <dt>Wo</dt><dd>Zirndorfer Bräuschank</dd>
+          <dt>Preise</dt><dd>XX Gewinne von 11 Zirndorfer Betrieben</dd>
+          <dt>Dabei</dt><dd>rund XX Gäste</dd>
+        </dl>
+      </div>
+      <p style="margin-top: var(--oz-space-4)">
+        Wer gewonnen hat und nicht dabei sein konnte, wurde per E-Mail benachrichtigt und kann
+        den Gewinn innerhalb von vier Wochen im Hotel Knorz in Zirndorf abholen – mit
+        Detektivname und Lösungswort.
+      </p>
+    </section>
+
+    <section>
+      <h2>Danke an unsere Sponsoren</h2>
+      <div class="sponsor-app">
+        <img src="helpi.webp" width="160" height="160" alt="Helpi, der kleine Feuerwehr-Hund." />
+        <p style="margin: 0">
+          <strong>Sponsor der App:</strong>
+          <a href="https://helpi.com" target="_blank" rel="noopener noreferrer">Helpi</a> hat
+          die Entwicklung der Sommerdetektive möglich gemacht – und
+          die Spürnasen als Maskottchen mit Einsatz-Tipps begleitet.
+        </p>
+      </div>
+      <p>Diese Zirndorfer Betriebe haben die Preise für die Verlosung gestiftet:</p>
+      <ul class="sponsors">
+        <li>Stadtwerke Zirndorf</li>
+        <li>Eiscafé Mosena</li>
+        <li>NazarDöner Zirndorf</li>
+        <li>Optik Rank</li>
+        <li>Sparkasse Fürth</li>
+        <li>Bücherstube Zirndorf</li>
+        <li>Playmobil Funpark</li>
+        <li>Restaurant Alte Veste</li>
+        <li>Zirndorfer Bräuschank</li>
+        <li>Restaurant Orfeas</li>
+        <li>Die Eisboutique</li>
+      </ul>
+      <p style="margin-top: var(--oz-space-4)">
+        Veranstalter: <a href="https://charunity.com/index.html" target="_blank" rel="noopener noreferrer">ChaRUNity e.V.</a>
+        · Entwicklung &amp; technische Umsetzung: <a href="https://openzirndorf.de/">OpenZirndorf</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Und jetzt?</h2>
+      <p>
+        Die Rätsel, die Standortprüfung und das Gewinnspiel sind abgeschaltet – diese Seite ist
+        nur noch ein Rückblick. Wer Lust auf mehr hat: OpenZirndorf baut weiter an digitalen
+        Projekten für Zirndorf, zuletzt auch an der Fahrrad-Aktion
+        <a href="https://erfahre.openzirndorf.de/">Erfahre Zirndorf</a>.
+      </p>
+      <div class="next-card">
+        <span class="emoji" aria-hidden="true">💡</span>
+        <div>
+          <strong>Was kommt als Nächstes?</strong> Neue Aktionen gibt's zuerst bei OpenZirndorf
+          und auf unseren Social-Media-Kanälen.
+          <br />
+          <a class="btn" href="https://openzirndorf.de/">Zu OpenZirndorf →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>In Zirndorf mit ❤️ und ☕ entwickelt.</p>
+    <div class="links">
+      <a href="https://openzirndorf.de/">openzirndorf.de</a>
+      <a href="https://www.instagram.com/openzirndorf/">Instagram</a>
+      <a href="https://openzirndorf.de/impressum.html">Impressum</a>
+      <a href="https://openzirndorf.de/datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+</body>
+</html>
