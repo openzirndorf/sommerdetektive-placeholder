@@ -185,6 +185,32 @@
       font-size: var(--oz-font-size-sm);
       font-weight: var(--oz-font-weight-medium);
     }
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--oz-space-3);
+      margin: 0 0 var(--oz-space-3);
+      padding: 0;
+      list-style: none;
+    }
+    @media (max-width: 640px) {
+      .shots { grid-template-columns: repeat(2, 1fr); }
+    }
+    .shots img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--oz-radius-lg);
+      border: 1px solid var(--oz-bg-subtle);
+      box-shadow: var(--oz-shadow-lg);
+    }
+    .shots span {
+      display: block;
+      text-align: center;
+      font-size: var(--oz-font-size-sm);
+      color: var(--oz-text-secondary);
+      margin-top: var(--oz-space-2);
+    }
   </style>
 </head>
 <body>
@@ -209,6 +235,16 @@
         nicht mehr lösen. Danke an alle Spürnasen fürs Mitermitteln!
       </p>
     </div>
+
+    <figure>
+      <ul class="shots">
+        <li><img src="screenshots/start.webp" width="390" height="844" loading="lazy" alt="Startseite der App: der Waschbär-Detektiv über einer Akte „Streng geheim“ mit dem Text „Willkommen, Detektive!“." /><span>Start</span></li>
+        <li><img src="screenshots/karte.webp" width="390" height="844" loading="lazy" alt="Die Seite „Meine Stationen“ mit Karte von Zirndorf, markierter nächster Aufgabe und versiegelten Akten." /><span>Stationskarte</span></li>
+        <li><img src="screenshots/raetsel.webp" width="390" height="844" loading="lazy" alt="Akte Nr. 001 „Die Abschlussprüfung“: der Rätseltext im Schreibmaschinen-Look." /><span>Rätsel-Akte</span></li>
+        <li><img src="screenshots/sponsoren.webp" width="390" height="844" loading="lazy" alt="Sponsoren-Seite der App mit Helpi als Sponsor der App und den Zirndorfer Betrieben, die die Preise gestiftet haben." /><span>Sponsoren</span></li>
+      </ul>
+      <figcaption>So sah die App aus: Detektiv-Akten, eine Karte mit der nächsten Station, Rätsel im Schreibmaschinen-Look.</figcaption>
+    </figure>
 
     <section>
       <h2>Worum ging's?</h2>
